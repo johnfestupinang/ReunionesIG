@@ -18,7 +18,7 @@ export default class LoginView extends Component {
                     <Image source={require('../../icons/UserIcon.png')} style={styles.userIcon}/>
                     <TextInput style={styles.inputEmail} placeholder='Email Address'/>
                     <Image source={require('../../icons/PasswordIcon.png')} style={styles.passwordIcon}/>
-                    <TextInput style={styles.inputPassword} placeholder='Password'/>
+                    <TextInput style={styles.inputPassword} placeholder='Password' secureTextEntry={true} />
                 </View>
 
                 <View style={styles.containerButton}> 
@@ -28,8 +28,19 @@ export default class LoginView extends Component {
                 </View>
 
                 <View style={styles.containerSocialNetwork}> 
-                
-                    <Icon.Button name="facebook" size={40} onPress={this.Gmail}/>
+
+                    <TouchableHighlight style={styles.iconFacebook} >
+                        <Icon name="facebook" size={36} color="#ffffff" onPress={this.Gmail}/>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight style={styles.iconTwitter} >
+                        <Icon name="twitter" size={36} color="#ffffff" onPress={this.Gmail}/>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight style={styles.iconGmail} >
+                        <Icon name="google" size={36} color="#ffffff" onPress={this.Gmail}/>
+                    </TouchableHighlight>
+                    
                     
                     
                 </View>
@@ -122,7 +133,7 @@ const styles = StyleSheet.create({
         width: 300 
     },
     containerButton:{
-        marginTop: 50,
+        marginTop: 40,
         marginLeft:10,
         marginRight:10,
         marginBottom:10,
@@ -148,12 +159,10 @@ const styles = StyleSheet.create({
     containerSocialNetwork:{
         marginTop:30,
         marginLeft:30,
-        marginRight:30,
-        marginBottom:30,
-        backgroundColor: '#ffffff'
+        marginRight:30
     },
     containerLinks:{
-        marginTop:90,
+        marginTop:25,
         marginLeft:10,
         marginRight:10,
         marginBottom:10,
@@ -179,28 +188,41 @@ const styles = StyleSheet.create({
         position:'absolute'
     },
     iconFacebook:{
-        marginTop:10,
-        marginLeft:45,
         marginBottom: 10,
-        position: 'absolute',
-        borderColor: '#FF0000',
-        backgroundColor: "#3b5998",
-        borderWidth: 1
+        marginTop:10,
+        marginLeft: 50,
+        backgroundColor:'#4064AD',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 60
     },
     iconTwitter:{
-        marginTop:10,
-        marginLeft:140,
         marginBottom: 10,
+        marginTop:10,
+        marginLeft: 150,
+        backgroundColor:'#00ACEE',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderRadius: 10,
         position: 'absolute',
-        borderColor: '#FF0000',
-        borderWidth: 1
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 60
     },
     iconGmail:{
-        marginTop:10,
-        marginLeft:230,
         marginBottom: 10,
+        marginTop:10,
+        marginLeft: 250,
+        backgroundColor:'#EE4734',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderRadius: 10,
         position: 'absolute',
-        borderColor: '#FF0000',
-        borderWidth: 1
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 60   
     }
 })
