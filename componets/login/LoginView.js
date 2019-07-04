@@ -1,5 +1,5 @@
 import React, { Component } from '../../node_modules/react';
-import { Text, View, StyleSheet, TextInput, TouchableHighlight, Image } from '../../node_modules/react-native';
+import { Text, View, StyleSheet, TextInput, TouchableHighlight, Image, StatusBar } from '../../node_modules/react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 //import Icon from '../../node_modules/react-native-vector-icons/FontAwesome';
@@ -8,50 +8,57 @@ export default class LoginView extends Component {
     render(){
         return(
             //Contenedor General
-            <View style={styles.container}> 
+            
                 
-                <View style={styles.containerTitle}>  
-                    <Text style={styles.title}>IG Services S.A.S</Text>
-                </View>
-
-                <View style={styles.containerInputs}> 
-                    <Image source={require('../../icons/UserIcon.png')} style={styles.userIcon}/>
-                    <TextInput style={styles.inputEmail} placeholder='Email Address'/>
-                    <Image source={require('../../icons/PasswordIcon.png')} style={styles.passwordIcon}/>
-                    <TextInput style={styles.inputPassword} placeholder='Password' secureTextEntry={true} />
-                </View>
-
-                <View style={styles.containerButton}> 
-                    <TouchableHighlight style={styles.buttonSignIn}>
-                        <Text style={styles.textSingIn} onPress={this.Gmail} >Sign In</Text>
-                    </TouchableHighlight>
-                </View>
-
-                <View style={styles.containerSocialNetwork}> 
-
-                    <TouchableHighlight style={styles.iconFacebook} >
-                        <Icon name="facebook" size={36} color="#ffffff" onPress={this.Gmail}/>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight style={styles.iconTwitter} >
-                        <Icon name="twitter" size={36} color="#ffffff" onPress={this.Gmail}/>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight style={styles.iconGmail} >
-                        <Icon name="google" size={36} color="#ffffff" onPress={this.Gmail}/>
-                    </TouchableHighlight>
-                    
-                    
-                    
-                </View>
-
-                <View style={styles.containerLinks}> 
-                    <Text style={styles.labelLinks}>Forgot Password?</Text>
-                    <Text style={styles.labelNoLink}>New here?</Text>
-                    <Text style={styles.labelSignUp}>Sing Up?</Text>
-                </View>
                 
-            </View>
+                <View style={styles.container}> 
+                    <StatusBar backgroundColor="#f7f6f6" barStyle="dark-content" />
+                    <View style={styles.containerTitle}>  
+                        <Text style={styles.title}>IG Services S.A.S</Text>
+                    </View>
+
+                    <View style={styles.containerInputs}> 
+                        <Image source={require('../../icons/UserIcon.png')} style={styles.userIcon}/>
+                        <TextInput style={styles.inputEmail} placeholder='Email Address'/>
+                        <Image source={require('../../icons/PasswordIcon.png')} style={styles.passwordIcon}/>
+                        <TextInput style={styles.inputPassword} placeholder='Password' secureTextEntry={true} />
+                    </View>
+
+                    <View style={styles.containerButton}> 
+                        <TouchableHighlight style={styles.buttonSignIn}>
+                            <Text style={styles.textSingIn} onPress={this.Gmail} >Sign In</Text>
+                        </TouchableHighlight>
+                    </View>
+
+                    <View style={styles.containerSocialNetwork}> 
+
+                        <TouchableHighlight style={styles.iconFacebook} >
+                            <Icon name="facebook" size={36} color="#ffffff" onPress={this.Gmail}/>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight style={styles.iconTwitter} >
+                            <Icon name="twitter" size={36} color="#ffffff" onPress={this.Gmail}/>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight style={styles.iconGmail} >
+                            <Icon name="google" size={36} color="#ffffff" onPress={this.Gmail}/>
+                        </TouchableHighlight>
+                        
+                        
+                        
+                    </View>
+
+                    <View style={styles.containerLinks}> 
+                    
+                        <Text style={styles.labelLinks}>Forgot Password?</Text>
+                        <Text style={styles.labelNoLink}>New here?</Text>
+                        <Text style={styles.labelSignUp}>Sing Up?</Text>
+                    </View>
+                    
+                </View>
+            
+
+            
         );
     }
 
@@ -134,7 +141,7 @@ const styles = StyleSheet.create({
     },
     containerButton:{
         marginTop: 40,
-        marginLeft:10,
+        marginLeft:20,
         marginRight:10,
         marginBottom:10,
         justifyContent: 'center',
