@@ -1,5 +1,8 @@
 import React, { Component } from '../../node_modules/react';
 import { Text, View, StyleSheet, TextInput, TouchableHighlight, Image } from '../../node_modules/react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+//import Icon from '../../node_modules/react-native-vector-icons/FontAwesome';
 
 export default class LoginView extends Component {
     render(){
@@ -25,15 +28,10 @@ export default class LoginView extends Component {
                 </View>
 
                 <View style={styles.containerSocialNetwork}> 
-                <TouchableHighlight style={styles.iconFacebook}>
-                    <Image source={require('../../icons/FacebookIcon.png')}/>
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.iconTwitter}>
-                    <Image source={require('../../icons/TwitterIcon.png')}/>
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.iconGmail} onPress={this.Gmail}>
-                    <Image source={require('../../icons/GmailIcon.png')}/>
-                </TouchableHighlight>
+                
+                    <Icon.Button name="facebook" size={40} onPress={this.Gmail}/>
+                    
+                    
                 </View>
 
                 <View style={styles.containerLinks}> 
@@ -186,6 +184,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         position: 'absolute',
         borderColor: '#FF0000',
+        backgroundColor: "#3b5998",
         borderWidth: 1
     },
     iconTwitter:{
