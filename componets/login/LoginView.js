@@ -5,12 +5,19 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 //import Icon from '../../node_modules/react-native-vector-icons/FontAwesome';
 
 export default class LoginView extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            email:'',
+            stateValidEmail:false
+        }
+    };
+
     render(){
         return(
             //Contenedor General
             
-                
-                
+              
                 <View style={styles.container}> 
                     <StatusBar backgroundColor="#f7f6f6" barStyle="dark-content" />
                     <View style={styles.containerTitle}>  
@@ -19,14 +26,14 @@ export default class LoginView extends Component {
 
                     <View style={styles.containerInputs}> 
                         <Image source={require('../../icons/UserIcon.png')} style={styles.userIcon}/>
-                        <TextInput style={styles.inputEmail} placeholder='Email Address'/>
+                        <TextInput style={styles.inputEmail} placeholder='Email Address' onChangeText={(email) => this.setState({email})} value={this.setState.email}/>
                         <Image source={require('../../icons/PasswordIcon.png')} style={styles.passwordIcon}/>
                         <TextInput style={styles.inputPassword} placeholder='Password' secureTextEntry={true} />
                     </View>
 
                     <View style={styles.containerButton}> 
                         <TouchableHighlight style={styles.buttonSignIn}>
-                            <Text style={styles.textSingIn} onPress={this.Gmail} >Sign In</Text>
+                            <Text style={styles.textSingIn} onPress={this.ValidarCorreo.bind(this)} >Sign In</Text>
                         </TouchableHighlight>
                     </View>
 
@@ -41,37 +48,48 @@ export default class LoginView extends Component {
                         </TouchableHighlight>
 
                         <TouchableHighlight style={styles.iconGmail} >
-                            <Icon name="google" size={36} color="#ffffff" onPress={this.Gmail}/>
+                                <Icon name="google" size={36} color="#ffffff" onPress={this.Gmail}/>                                                       
                         </TouchableHighlight>
                         
                         
                         
                     </View>
 
-                    <View style={styles.containerLinks}> 
-                    
+                    <View style={styles.containerLinks}>                     
                         <Text style={styles.labelLinks}>Forgot Password?</Text>
                         <Text style={styles.labelNoLink}>New here?</Text>
                         <Text style={styles.labelSignUp}>Sing Up?</Text>
                     </View>
                     
-                </View>
-            
-
-            
+                </View> 
         );
     }
 
     Gmail(){
-        alert("Gmail Button");
+        const {email} = this.state;
+        alert("mail: "+email);
+    }
+
+    ValidarCorreo(){
+        const regularExpressions = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(regularExpressions.test(this.state.email)===true){
+            alert("Correo electronico correcto");
+        }else{
+            alert("Revise el correo electronico");
+            
+        }
     }
 }
 
 // Estilos 
 
 const styles = StyleSheet.create({
+    generalContainer:{
+        justifyContent: 'flex-start',
+        flex: 1
+    },
     container: {
-        flex: 1,
+        justifyContent: 'space-evenly',
         marginTop: 10,
         marginLeft:10,
         marginRight:10,
