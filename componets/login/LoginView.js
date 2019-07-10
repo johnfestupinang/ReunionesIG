@@ -1,5 +1,5 @@
 import React, { Component } from '../../node_modules/react';
-import { Text, View, StyleSheet, TextInput, TouchableHighlight, Image, StatusBar } from '../../node_modules/react-native';
+import { Text, View, StyleSheet, TextInput, TouchableHighlight, Image, StatusBar, Alert } from '../../node_modules/react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 //import Icon from '../../node_modules/react-native-vector-icons/FontAwesome';
@@ -9,7 +9,7 @@ export default class LoginView extends Component {
         super(props);
         this.state={
             email:'',
-            stateValidEmail:false
+            password:''
         }
     };
 
@@ -28,7 +28,7 @@ export default class LoginView extends Component {
                         <Image source={require('../../icons/UserIcon.png')} style={styles.userIcon}/>
                         <TextInput style={styles.inputEmail} placeholder='Email Address' onChangeText={(email) => this.setState({email})} value={this.setState.email}/>
                         <Image source={require('../../icons/PasswordIcon.png')} style={styles.passwordIcon}/>
-                        <TextInput style={styles.inputPassword} placeholder='Password' secureTextEntry={true} />
+                        <TextInput style={styles.inputPassword} placeholder='Password' secureTextEntry={true} onChangeText={(password) => this.setState({password})} value={this.setState.password}/>
                     </View>
 
                     <View style={styles.containerButton}> 
@@ -72,24 +72,28 @@ export default class LoginView extends Component {
 
     ValidarCorreo(){
         const regularExpressions = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if(regularExpressions.test(this.state.email)===true){
-            alert("Correo electronico correcto");
-        }else{
-            alert("Revise el correo electronico");
+        const inputPassword = this.state.password;
+
+        if(regularExpressions.test(this.state.email)===true && this.state.email != ''){
+            Alert.alert('IG Meetings','check your email');
             
+        }else{
+            Alert.alert('IG Meetings','!empty email or incorrect email, check¡');
         }
+
+       /* if(inputPassword.indexOf(' ') < 8){
+            alert("IG Meetings","Ingrese una contraseña valida");
+        }else{
+            alert("IG Meetings","Else password");
+        }*/
     }
 }
 
 // Estilos 
 
 const styles = StyleSheet.create({
-    generalContainer:{
-        justifyContent: 'flex-start',
-        flex: 1
-    },
+
     container: {
-        justifyContent: 'space-evenly',
         marginTop: 10,
         marginLeft:10,
         marginRight:10,
