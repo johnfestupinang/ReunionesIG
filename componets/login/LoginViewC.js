@@ -29,8 +29,7 @@ export default class LoginView extends Component {
                 <View style={styles.containerIcons}>
                     <Icon name="user-circle-o" size={36} color="#92d36e" style={styles.userIcon}/>                    
                 </View>     
-                        <View style={styles.containerBody}> 
-                            
+                        <View style={styles.containerBody}>                             
                             <View style={styles.containerInputs}>
                                 <TextInput style={styles.inputEmail} placeholder='Email Address'/>
                             </View> 
