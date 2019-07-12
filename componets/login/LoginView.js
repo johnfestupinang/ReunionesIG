@@ -9,9 +9,46 @@ export default class LoginView extends Component {
         super(props);
         this.state={
             email:'',
-            password:''
+            stateValidateEmail:true,
+            password:'',
+            stateValidatePassword:true,
         }
+
     };
+    validateEmail (emailSend,type){
+        const regularExpressions = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;        
+        
+        if(type=='Email'){
+            if(regularExpressions.test(emailSend) && emailSend != ''){
+                this.setState({
+                    email: emailSend,
+                    stateValidateEmail:true
+                }) 
+            }else{
+                this.setState({
+                    stateValidateEmail:false
+                }) 
+            }
+        }
+    }
+
+    validatePassword (passwordSend,type){
+        const regularExpressionsPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/;
+
+        if(type=='Password'){
+            if(regularExpressionsPassword.test(passwordSend) && passwordSend != ''){
+                this.setState({
+                    password: passwordSend,
+                    stateValidatePassword:true
+                })
+            }else{
+                this.setState({
+                    stateValidatePassword:false
+
+                })
+            }
+        }
+    }
 
     render(){
         return(
@@ -26,14 +63,14 @@ export default class LoginView extends Component {
 
                     <View style={styles.containerInputs}> 
                         <Image source={require('../../icons/UserIcon.png')} style={styles.userIcon}/>
-                        <TextInput style={styles.inputEmail} placeholder='Email Address' onChangeText={(email) => this.setState({email})} value={this.setState.email}/>
+                        <TextInput style={[styles.inputEmail, !this.state.stateValidateEmail ? styles.error : null ]} placeholder='Email Address' onChangeText={(emaill) => this.validateEmail(emaill,'Email')} value={this.setState.email} autoCapitalize = "none"/>
                         <Image source={require('../../icons/PasswordIcon.png')} style={styles.passwordIcon}/>
-                        <TextInput style={styles.inputPassword} placeholder='Password' secureTextEntry={true} onChangeText={(password) => this.setState({password})} value={this.setState.password}/>
+                        <TextInput style={[styles.inputPassword,!this.state.stateValidatePassword ? styles.error : null ]} placeholder='Password' secureTextEntry={true} onChangeText={(pass) => this.validatePassword(pass,'Password')} value={this.setState.password}/>
                     </View>
 
                     <View style={styles.containerButton}> 
                         <TouchableHighlight style={styles.buttonSignIn}>
-                            <Text style={styles.textSingIn} onPress={this.ValidarCorreo.bind(this)} >Sign In</Text>
+                            <Text style={styles.textSingIn} onPress={this.signInButton.bind(this)} >Sign In</Text>
                         </TouchableHighlight>
                     </View>
 
@@ -70,22 +107,13 @@ export default class LoginView extends Component {
         alert("mail: "+email);
     }
 
-    ValidarCorreo(){
-        const regularExpressions = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        const inputPassword = this.state.password;
-
-        if(regularExpressions.test(this.state.email)===true && this.state.email != ''){
-            Alert.alert('IG Meetings','check your email');
-            
+    signInButton(){
+        if(this.state.stateValidateEmail && this.state.stateValidatePassword){
+            Alert.alert('IG Meetings','Welcome to IG Meetings');            
         }else{
-            Alert.alert('IG Meetings','!empty email or incorrect email, check¡');
+            Alert.alert('IG Meetings','Check your email or password, they are incorrect');
         }
-
-       /* if(inputPassword.indexOf(' ') < 8){
-            alert("IG Meetings","Ingrese una contraseña valida");
-        }else{
-            alert("IG Meetings","Else password");
-        }*/
+        //Alert.alert('IG Meetings','Email:'+this.state.email+' Password: '+this.state.password);
     }
 }
 
@@ -253,5 +281,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: 60   
+    },
+    error:{
+        
+       borderColor: '#FF6464',
+       borderWidth: 1 
     }
+
 })
